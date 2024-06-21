@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "centralus"
+        },
+        "vnetName": {
+            "value": "ghatrainingvnet"
+        },
+        "privateIPPrefix": {
+            "value": 125
+        },
+        "endpointsSubnetName": {
+            "value": "endpoints"
+        },
+        "endpointsSubnetIPZone": {
+            "value": 10
+        },
+        "webSubnetName": {
+            "value": "web"
+        },
+        "webSubnetIPZone": {
+            "value": 5
+        }
+    }
+}
+

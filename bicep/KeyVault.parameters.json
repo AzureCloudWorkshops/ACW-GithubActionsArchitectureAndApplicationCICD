@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "centralus"
+        },
+        "uniqueIdentifier": {
+            "value": "20291231acw"
+        },
+        "vnetName": {
+            "value": "vnetname"
+        },
+        "subnetName": {
+            "value": "subnetname"
+        },
+        "keyVaultName": {
+            "value": "KV-ContactWeb"
+        },
+        "keyVaultAdminGroupObjectId": {
+            "value": "00000000-0000-0000-0000-000000000000"
+        },
+        "enableKeyVaultForDeployments": {
+            "value": true
+        },
+        "enableKeyVaultForDiskEncryption": {
+            "value": false
+        },
+        "enableKeyVaultForTemplateDeployment": {
+            "value": true
+        },
+        "enableKeyVaultSoftDelete": {
+            "value": true
+        },
+        "enableKeyVaultRbacAuthorization": {
+            "value": false
+        },
+        "keyVaultSoftDeleteRetentionInDays": {
+            "value": 7
+        },
+        "keyVaultSKUName": {
+            "value": "standard"
+        },
+        "keyVaultSKUFamily": {
+            "value": "A"
+        },
+        "databaseServerName": {
+            "value": "dbserver"
+        },
+        "webAppFullName": {
+            "value": "webappname"
+        },
+        "sqlDatabaseName": {
+            "value": "databasename"
+        },
+        "sqlServerAdminPassword": {
+            "value": "serveradminpassword"
+        },
+        "WAGVaultIdentityName": {
+            "value": "WAGCertificateReaderIdentity"
+        }
+    }
+}

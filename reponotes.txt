@@ -1,0 +1,4 @@
+Part of this walkthrough (part 1) regarding service principal creation is directly copied from https://github.com/AzureCloudWorkshops/ACW_DeployAppServiceToAzureViaGitHubActions/blob/main/README.md.
+
+If updated here, make sure to update there as well appropriately (and vice versa).  
+

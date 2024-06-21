@@ -1,0 +1,105 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "rgName": {
+            "value": "gha-training-rg"
+        },
+        "location": {
+            "value": "centralus"
+        },
+        "environment": {
+            "value": "dev"
+        },
+        "vnetName": {
+            "value": "ghatrainingvnet"
+        },
+        "privateIPPrefix": {
+            "value": 125
+        },
+        "endpointsSubnetName": {
+            "value": "endpoints"
+        },
+        "endpointsSubnetIPZone": {
+            "value": 10
+        },
+        "webSubnetName": {
+            "value": "web"
+        },
+        "webSubnetIPZone": {
+            "value": 5
+        },
+        "logAnalyticsWorkspaceName": {
+            "value": "ghaTrainingWebAnalytics"
+        },
+        "appInsightsName": {
+            "value": "ghaTrainingAppInsights"
+        },
+        "uniqueIdentifier": {
+            "value": "20291231acw"
+        },
+        "appServicePlanName": {
+            "value": "contactWebASP"
+        },
+        "appServicePlanSku": {
+            "value": "S1"
+        },
+        "webAppName": {
+            "value": "ContactWeb"
+        },
+        "identityDBConnectionStringKey": {
+            "value": "DefaultConnection"
+        },
+        "applicationDbConnectionStringKey": {
+            "value": "MyContactManager"
+        },
+        "sqlServerName": {
+            "value": "ContactWebDBServer"
+        },
+        "sqlDatabaseName": {
+            "value": "ContactWebDB"
+        },
+        "sqlServerAdminLogin": {
+            "value": "contactwebdbuser"
+        },
+        "sqlServerAdminPassword": {
+            "value": "workshopDbPwd#54321!"
+        },
+        "clientIPAddress": {
+            "value": "10.10.10.10"
+        },
+        "keyVaultName": {
+            "value": "KV-ContactWeb"
+        },
+        "keyVaultAdminGroupObjectId": {
+            "value": "00000000-0000-0000-0000-000000000000"
+        },
+        "enableKeyVaultForDeployments": {
+            "value": true
+        },
+        "enableKeyVaultForDiskEncryption": {
+            "value": false
+        },
+        "enableKeyVaultForTemplateDeployment": {
+            "value": true
+        },
+        "enableKeyVaultSoftDelete": {
+            "value": true
+        },
+        "enableKeyVaultRbacAuthorization": {
+            "value": false
+        },
+        "keyVaultSoftDeleteRetentionInDays": {
+            "value": 7
+        },
+        "keyVaultSKUName": {
+            "value": "standard"
+        },
+        "keyVaultSKUFamily": {
+            "value": "A"
+        },
+        "WAGVaultIdentityName": {
+            "value": "WAGCertificateReaderIdentity"
+        }
+    }
+}

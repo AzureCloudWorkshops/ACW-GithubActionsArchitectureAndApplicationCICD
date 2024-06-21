@@ -1,0 +1,49 @@
+name: Deploy Architecture From GitHub to Azure using Bicep
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:  
+  AZURE_TENANT_ID:  ${{ secrets.AZURE_TENANT_ID }}
+  AZURE_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION_ID_DEV }}
+  AZURE_CLIENT_ID: '${{ secrets.AZURE_CLIENT_ID_DEV }}'
+  TEMPLATE: 'bicep/TestFiles/deployResourceGroup.bicep'
+  PARAMETERS: 'bicep/TestFiles/deployResourceGroup.parameters.json'  
+  DEPLOYMENT_NAME: 'DeployResourceGroupFromGitHubActions'
+  REGION: 'centralus'
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy-dev-env:
+    name: Deploy Environment Architecture
+    runs-on: ubuntu-latest
+    environment:
+      name: 'dev'
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Log in to Azure
+        uses: azure/login@v2.1.1
+        with:
+          client-id: ${{ env.AZURE_CLIENT_ID }}
+          tenant-id: ${{ env.AZURE_TENANT_ID }}
+          subscription-id: ${{ env.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Resources
+        uses: Azure/arm-deploy@v2.0.0
+        with:
+          scope: subscription
+          subscriptionId: ${{ env.AZURE_SUBSCRIPTION_ID }}
+          region: ${{ env.REGION }}
+          template: '${{ env.TEMPLATE }}'
+          parameters: '${{ env.PARAMETERS }}'
+          deploymentName: '${{env.DEPLOYMENT_NAME}}-${{github.run_number}}'
+          failOnStdErr: true

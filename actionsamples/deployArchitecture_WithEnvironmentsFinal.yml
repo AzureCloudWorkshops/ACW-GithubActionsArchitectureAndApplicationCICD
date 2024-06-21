@@ -1,0 +1,77 @@
+name: Deploy Architecture From GitHub to Azure using Bicep
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'bicep/**'
+  workflow_dispatch:
+
+env:  
+  AZURE_TENANT_ID:  ${{ secrets.AZURE_TENANT_ID }}
+  TEMPLATE: 'bicep/deployAll.bicep'
+  DEPLOYMENT_NAME: 'DeployResourceGroupFromGitHubActions'
+  
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  deploy-dev-env:
+    name: Deploy Environment Architecture [Dev]
+    runs-on: ubuntu-latest
+    environment: 
+      name: dev
+      
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Log in to Azure
+        uses: azure/login@v2.1.1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ env.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Resources
+        uses: Azure/arm-deploy@v2.0.0
+        with:
+          scope: subscription
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          region: ${{ vars.REGION }}
+          template: '${{ env.TEMPLATE }}'
+          parameters: '${{ vars.PARAMETERS }}'
+          deploymentName: '${{env.DEPLOYMENT_NAME}}-${{github.run_number}}'
+          failOnStdErr: true
+
+  deploy-prod-env:
+    name: Deploy Environment Architecture [Prod]
+    runs-on: ubuntu-latest
+    needs: deploy-dev-env
+    environment: 
+      name: prod
+      
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Log in to Azure
+        uses: azure/login@v2.1.1
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ env.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      - name: Deploy Resources
+        uses: Azure/arm-deploy@v2.0.0
+        with:
+          scope: subscription
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          region: ${{ vars.REGION }}
+          template: '${{ env.TEMPLATE }}'
+          parameters: '${{ vars.PARAMETERS }}'
+          deploymentName: '${{env.DEPLOYMENT_NAME}}-${{github.run_number}}'
+          failOnStdErr: true
+

@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "centralus"
+        },
+        "appInsightsName": {
+            "value": "contactWebAppInsights"
+        },
+        "vnetName": {
+            "value": "ghatrainingvnet"
+        },
+        "webSubnetName": {
+            "value": "web"
+        },
+        "uniqueIdentifier": {
+            "value": "20291231acw"
+        },
+        "appServicePlanName": {
+            "value": "contactWebASP"
+        },
+        "appServicePlanSku": {
+            "value": "F1"
+        },
+        "webAppName": {
+            "value": "ContactWeb"
+        },
+        "identityDBConnectionStringKey": {
+            "value": "DefaultConnection"
+        },
+        "managerDBConnectionStringKey": {
+            "value": "MyContactManager"
+        }
+    }
+}

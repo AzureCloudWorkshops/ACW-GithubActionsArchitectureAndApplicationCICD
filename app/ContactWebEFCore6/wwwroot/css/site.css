@@ -1,0 +1,35 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.active-link {
+    font-weight: bold;
+    background-color: #c3c3c3;
+}
+
+.button-default-width {
+    width: 225px;
+}
+
+.button-default-sm-width {
+    width: 75px;
+}
+
+.padding-top-25 {
+    padding-top: 25px;
+}

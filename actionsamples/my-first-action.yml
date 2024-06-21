@@ -1,0 +1,29 @@
+name: My First Action
+run-name: workflow [my-first-action.yml] triggered by ${{ github.triggering_actor }} for ${{ github.sha }} on ${{ github.ref }}
+
+on:  
+  # Trigger the workflow on push to main
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  MY_ENVIRONMENT: 'production'
+  run_number: ${{ github.run_number }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Hello world
+        run: echo 'Hello world! I am running in ${{ env.MY_ENVIRONMENT }}. This is run number ${{ env.run_number }}'
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy code
+        run: echo 'Deploying code with secret ${{ secrets.MY_SECRET }}'
