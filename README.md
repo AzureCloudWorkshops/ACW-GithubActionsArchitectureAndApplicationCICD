@@ -47,6 +47,11 @@ For example, the following resources should be evaluated and considered (at leas
 - Resiliency and High Availability solutions
 - Route Tables for controlling traffic within the network
 
+## Slides and Demonstrations for this workshop
+
+The slides and demonstrations for this workshop [can be viewed here](https://training.majorguidancesolutions.com/courses/blog-posts-and-talks/contents/6675a112287ff).  
+
+
 ## No Guarantee/Disclaimer
 
 There is no guarantee that this solution will work for you.  It is a demonstration and may require additional configuration or troubleshooting to work in your environment.  It is recommended that you understand the solution and the components before deploying it.
