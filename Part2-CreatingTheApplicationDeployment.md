@@ -2,6 +2,12 @@
 
 In this part, you will create the application deployment. 
 
+## Table of Contents
+
+- [Table of Contents](#table-of-contents)
+    - [Step 1: Create the Deployment](#step-1-create-the-deployment)
+    - [Step 2: Make it private](#step-2-make-it-private)
+
 ## Step 1: Create the Deployment
 
 In the past you could just create a deployment from the portal. With recent changes, you can no longer do that without changing the setting to allow for publishing via the publish profile. 
@@ -102,7 +108,7 @@ For this reason, it's recommended to use the Azure Login and Deployment actions 
     
     Provided everything is set correctly, the site should be working against the database.
 
-### Task 2: Make it private
+## Step 2: Make it private
 
 The app is currently set to be public because the next steps would be to make a WAG, set the application to disable public endpoints, and only come in through the WAG.  However, this walkthrough will not cover these steps.  Here are the things you would need to do in order to secure the website completely behind a WAG/WAF.
 

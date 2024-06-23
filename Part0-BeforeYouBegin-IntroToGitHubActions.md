@@ -50,7 +50,7 @@ First, you must create a new action.
 
     In your new repository, click on the `Actions` tab and then click on the `New workflow` button.
 
-    !["Searching and Creating a new workflow"](./images/0000_GitHubActionsOverview/image0000_searchingandcreatingaworkflow.png)  
+    !["Searching and Creating a new workflow"](images/0000_GitHubActionsOverview/image0001_searchingandcreatingaworkflow.png)  
 
     You will notice that there are a number of actions available out of the box. If you have a need, you would search for a match and start from there.  For example, if you wanted to build a .NET project you would search for `.NET` and select one of the appropriate actions.  
 

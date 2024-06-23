@@ -1,0 +1,44 @@
+name: Deploy Web Application to All environments
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+        - 'app/**/*'
+  workflow_dispatch:
+
+permissions:
+      id-token: write
+      contents: read
+
+env: 
+  REPO_PAT: ${{ secrets.REPO_DISPATCH_PAT }}
+  CURRENT_BRANCH: ${{ github.ref }}
+  
+jobs:
+  deploy-app-to-environments:
+    runs-on: ubuntu-latest
+    
+    steps:
+    # Checkout code
+    - uses: actions/checkout@v4
+      with:
+        ref: ${{ env.CURRENT_BRANCH }}
+
+    # Dev Environment
+    - name: Deploy Web Application - DEV
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        token: ${{ env.REPO_PAT }}
+        repository: ${{ github.repository }}
+        event-type: deploy-app-to-specific-environment
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "branch": "${{ env.CURRENT_BRANCH }}", "environmentName": "dev"}'
+
+    # Prod Environment
+    - name: Deploy Web Application - PROD
+      uses: peter-evans/repository-dispatch@v2
+      with:
+        token: ${{ env.REPO_PAT }}
+        repository: ${{ github.repository }}
+        event-type: deploy-app-to-specific-environment
+        client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}", "branch": "${{ env.CURRENT_BRANCH }}", "environmentName": "prod"}'

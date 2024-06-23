@@ -12,6 +12,34 @@ While you can and will likely someday create a managed identity with IaC, becaus
 
 >**Note**: If you cannot get permissions for contributor on your subscription, you could do this deployment as a group-level deployment on an existing resource group.  If this is the case, your managed identity will need contributor permissions on that specific resource group.
 
+
+## Table of Contents  
+
+- [Part 1 - Creating the architecture deployment](#part-1---creating-the-architecture-deployment)
+  - [Table of Contents](#table-of-contents)
+  - [Step 1: Create a service principal](#step-1-create-a-service-principal)
+    - [Task 1: Create a user-managed identity in Azure for deployment](#task-1-create-a-user-managed-identity-in-azure-for-deployment)
+    - [Task 2: Add the federated credentials to the identity](#task-2-add-the-federated-credentials-to-the-identity)
+    - [Task 3: Ensure subscription contributor for Managed Identity](#task-3-ensure-subscription-contributor-for-managed-identity)
+  - [Step 2: Create a simple deployment](#step-2-create-a-simple-deployment)
+    - [Task 1: Ensure you have a simple file](#task-1-ensure-you-have-a-simple-file)
+    - [Task 2: Add user secrets](#task-2-add-user-secrets)
+    - [Task 3: Create the Action to deploy the resource group test file](#task-3-create-the-action-to-deploy-the-resource-group-test-file)
+    - [Task 4: Validate the deployment](#task-4-validate-the-deployment)
+  - [Step 3: Deploy the full architecture](#step-3-deploy-the-full-architecture)
+  - [Step 4: Use GitHub Environments](#step-4-use-github-environments)
+    - [Task 1 - Create the Environments](#task-1---create-the-environments)
+    - [Task 2 - Configure the environments in the workflow](#task-2---configure-the-environments-in-the-workflow)
+    - [Task 3 - Update the workflow to use the environments](#task-3---update-the-workflow-to-use-the-environments)
+    - [Task 4 - Deploy to the `prod` environment](#task-4---deploy-to-the-prod-environment)
+  - [Step 5: Only trigger an architecture build on file change](#step-5-only-trigger-an-architecture-build-on-file-change)
+    - [Task 1 - Set the trigger to only respond if files are modified in the `bicep` folder:](#task-1---set-the-trigger-to-only-respond-if-files-are-modified-in-the-bicep-folder)
+  - [Next Steps](#next-steps)
+  - [Additional Troubleshooting](#additional-troubleshooting)
+  
+# Part 1 - Creating the architecture deployment
+
+
 ## Step 1: Create a service principal
 
 In this first task, you will create a service principal that will be used to deploy the architecture and application.   
@@ -159,10 +187,6 @@ In order to deploy, you will need to add the user secrets to the GitHub reposito
   Add the secret: `AZURE_TENANT_ID` and paste the `Tenant ID`.
 
   >**Note:** if you are spanning tenants, make sure to create a more specific secret name, like `AZURE_TENANT_ID_DEV` or `AZURE_TENANT_ID_PROD` to differentiate between the two.
-
-### Task 3: Ensure subscription contributor for Managed Identity
-
-
 
 ### Task 3: Create the Action to deploy the resource group test file
 
